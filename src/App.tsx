@@ -1,10 +1,11 @@
 import React from "react";
 import "./App.css";
+import FrontPage from "./Containers/FrontPage/FrontPage";
 
 const App: React.FC = () => {
   return (
     <div className="App">
-      <h1>AJT Checker</h1>
+      <FrontPage text="AJT-Checker" />
     </div>
   );
 };
