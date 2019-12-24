@@ -5,7 +5,7 @@ import FrontPage from "./Containers/FrontPage/FrontPage";
 const App: React.FC = () => {
   return (
     <div className="App">
-      <FrontPage text="AJT-Checker" />
+      <FrontPage />
     </div>
   );
 };

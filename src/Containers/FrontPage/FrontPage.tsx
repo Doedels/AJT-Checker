@@ -1,11 +1,7 @@
 import React, { useState } from "react";
+import IncomeQuery from "../../Components/IncomeQuery/IncomeQuery";
 
-type FrontPageProps = {
-  text: string;
-  number?: number;
-};
-
-const FrontPage = (props: FrontPageProps) => {
+const FrontPage = () => {
   const [partner, setPartner] = useState(false);
 
   const partnerChangedHandler = (event: any) => {
@@ -14,9 +10,13 @@ const FrontPage = (props: FrontPageProps) => {
 
   return (
     <div>
-      <h1>{props.text}</h1>
+      <div className={"header"}>
+        <h1>AOW- en Jeugdtegoed Checker</h1>
+      </div>
+
       <input type="checkbox" onChange={partnerChangedHandler} />
       <p>Partner = {`${partner}`}</p>
+      <IncomeQuery incomeArray={["Ziektewet", "Andere uitkeringen", "Loon"]} />
     </div>
   );
 };
