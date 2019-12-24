@@ -5,9 +5,18 @@ type IncomeQueryProps = {
 };
 
 const IncomeQuery = (props: IncomeQueryProps) => {
+  const inputs = props.incomeArray.map(income => {
+    return (
+      <div key={income}>
+        <input type="number" min="0" name={income} />
+        <label>{income}</label>
+      </div>
+    );
+  });
+
   return (
     <div>
-      <p>IncomeQuery</p>
+      <form>{inputs}</form>
     </div>
   );
 };
