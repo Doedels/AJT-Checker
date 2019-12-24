@@ -1,5 +1,4 @@
 import React from "react";
-import "./App.css";
 import FrontPage from "./Containers/FrontPage/FrontPage";
 
 const App: React.FC = () => {

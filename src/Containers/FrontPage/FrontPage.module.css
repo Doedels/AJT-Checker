@@ -1,0 +1,16 @@
+.header {
+  background-color: #18933c;
+  color: #fff;
+  padding: 10px 0;
+  margin-bottom: 20px;
+  text-align: center;
+}
+
+.body {
+  display: flex;
+  justify-content: center;
+}
+
+.inputs {
+  width: 50%;
+}
