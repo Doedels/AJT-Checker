@@ -4,17 +4,28 @@ import classes from "./FrontPage.module.css";
 
 const FrontPage = () => {
   const [partner, setPartner] = useState(false);
+  const [regeling, setRegeling] = useState("");
   const [income, setIncome] = useState({});
 
-  const partnerChangedHandler = (event: any) => {
+  const partnerChangedHandler = (event: {
+    target: { checked: React.SetStateAction<boolean> };
+  }) => {
     setPartner(event.target.checked);
   };
 
-  const inputChangeHandler = (event: any) => {
+  const inputChangeHandler = (event: {
+    target: { name: any; value: React.ReactText };
+  }) => {
     setIncome({
       ...income,
       [event.target.name]: +event.target.value
     });
+  };
+
+  const regelingChangedHandler = (event: {
+    target: { value: React.SetStateAction<string> };
+  }) => {
+    setRegeling(event.target.value);
   };
 
   return (
@@ -24,8 +35,26 @@ const FrontPage = () => {
       </div>
       <div className={classes.body}>
         <div className={classes.inputs}>
+          <p>Welke regeling wilt u checken?</p>
+          <input
+            type="radio"
+            name="regeling"
+            value="AOW"
+            onChange={regelingChangedHandler}
+          />
+          AOW tegoed
+          <input
+            type="radio"
+            name="regeling"
+            value="Jeugd"
+            onChange={regelingChangedHandler}
+          />
+          Jeugd tegoed
+          <br />
+          <br />
           <input type="checkbox" onChange={partnerChangedHandler} />
-          <p>Partner = {`${partner}`}</p>
+          <label> Ik heb een partner</label>
+          <p>Regeling = {`${regeling}`}</p>
           <IncomeQuery
             incomeArray={["Ziektewet", "Andere uitkeringen", "Loon"]}
             changed={inputChangeHandler}
