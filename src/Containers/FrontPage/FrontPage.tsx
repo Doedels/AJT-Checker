@@ -4,9 +4,17 @@ import classes from "./FrontPage.module.css";
 
 const FrontPage = () => {
   const [partner, setPartner] = useState(false);
+  const [income, setIncome] = useState({});
 
   const partnerChangedHandler = (event: any) => {
     setPartner(event.target.checked);
+  };
+
+  const inputChangeHandler = (event: any) => {
+    setIncome({
+      ...income,
+      [event.target.name]: +event.target.value
+    });
   };
 
   return (
@@ -20,6 +28,7 @@ const FrontPage = () => {
           <p>Partner = {`${partner}`}</p>
           <IncomeQuery
             incomeArray={["Ziektewet", "Andere uitkeringen", "Loon"]}
+            changed={inputChangeHandler}
           />
         </div>
       </div>
