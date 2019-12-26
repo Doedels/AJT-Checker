@@ -10,7 +10,7 @@ const IncomeQuery = (props: IncomeQueryProps) => {
     return (
       <div key={income}>
         <input type="number" min="0" name={income} onChange={props.changed} />
-        <label>{income}</label>
+        <label> {income}</label>
       </div>
     );
   });

@@ -28,6 +28,44 @@ const FrontPage = () => {
     setRegeling(event.target.value);
   };
 
+  const inputs: JSX.Element[] = [];
+
+  if (regeling === "AOW") {
+    inputs.push(
+      <IncomeQuery
+        incomeArray={["AOW", "Pensioen"]}
+        changed={inputChangeHandler}
+      />
+    );
+    if (partner) {
+      inputs.push(
+        <IncomeQuery
+          incomeArray={["AOW partner", "Pensioen partner"]}
+          changed={inputChangeHandler}
+        />
+      );
+    }
+  } else if (regeling === "Jeugd") {
+    inputs.push(
+      <IncomeQuery
+        incomeArray={["Ziektewet", "Andere uitkeringen", "Loon"]}
+        changed={inputChangeHandler}
+      />
+    );
+    if (partner) {
+      inputs.push(
+        <IncomeQuery
+          incomeArray={[
+            "Ziektewet partner",
+            "Andere uitkeringen partner",
+            "Loon partner"
+          ]}
+          changed={inputChangeHandler}
+        />
+      );
+    }
+  }
+
   return (
     <div>
       <div className={classes.header}>
@@ -54,11 +92,9 @@ const FrontPage = () => {
           <br />
           <input type="checkbox" onChange={partnerChangedHandler} />
           <label> Ik heb een partner</label>
-          <p>Regeling = {`${regeling}`}</p>
-          <IncomeQuery
-            incomeArray={["Ziektewet", "Andere uitkeringen", "Loon"]}
-            changed={inputChangeHandler}
-          />
+          <br />
+          <br />
+          {inputs}
         </div>
       </div>
     </div>
