@@ -13,3 +13,11 @@
 .inputs {
   width: 50%;
 }
+
+.Button {
+  background-color: #18933c;
+  color: #fff;
+  padding: 10px;
+  border-radius: 10px;
+  margin-top: 1rem;
+}

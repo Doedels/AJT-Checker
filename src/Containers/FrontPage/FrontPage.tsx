@@ -4,6 +4,7 @@ import classes from "./FrontPage.module.css";
 
 const FrontPage = () => {
   const [partner, setPartner] = useState(false);
+  const [kind, setKind] = useState(false);
   const [regeling, setRegeling] = useState("");
   const [income, setIncome] = useState({});
 
@@ -11,6 +12,12 @@ const FrontPage = () => {
     target: { checked: React.SetStateAction<boolean> };
   }) => {
     setPartner(event.target.checked);
+  };
+
+  const kindChangedHandler = (event: {
+    target: { checked: React.SetStateAction<boolean> };
+  }) => {
+    setKind(event.target.checked);
   };
 
   const inputChangeHandler = (event: {
@@ -32,38 +39,79 @@ const FrontPage = () => {
 
   if (regeling === "AOW") {
     inputs.push(
+      <div>
+        <p>Vul hieronder uw netto maandinkomen in</p>
+        <p>(4 weken inkomen * 13 /12 = maandinkomen)</p>
+      </div>
+    );
+    inputs.push(
       <IncomeQuery
-        incomeArray={["AOW", "Pensioen"]}
+        key="AOW"
+        incomeArray={["AOW", "Pensioen", "Overig (Loon, winst)"]}
         changed={inputChangeHandler}
       />
     );
     if (partner) {
       inputs.push(
         <IncomeQuery
-          incomeArray={["AOW partner", "Pensioen partner"]}
+          key="AOW partner"
+          incomeArray={[
+            "AOW partner",
+            "Pensioen partner",
+            "Overig partner (Loon, winst)"
+          ]}
           changed={inputChangeHandler}
         />
       );
     }
   } else if (regeling === "Jeugd") {
     inputs.push(
+      <div key="kind">
+        <br />
+        <input type="checkbox" onChange={kindChangedHandler} />
+        <label>
+          Ik heb een kind dat op 1 januari 2020 11 jaar of jonger is.
+        </label>
+        <p>Vul hieronder uw netto maandinkomen in</p>
+        <p>(4 weken inkomen * 13 /12 = maandinkomen)</p>
+      </div>
+    );
+    inputs.push(
       <IncomeQuery
-        incomeArray={["Ziektewet", "Andere uitkeringen", "Loon"]}
+        key="Jeugd"
+        incomeArray={[
+          "Ziektewet",
+          "Andere uitkeringen",
+          "Loon",
+          "Overig (Alimentatie, DUO, winst)"
+        ]}
         changed={inputChangeHandler}
       />
     );
     if (partner) {
       inputs.push(
         <IncomeQuery
+          key="Jeugd partner"
           incomeArray={[
             "Ziektewet partner",
             "Andere uitkeringen partner",
-            "Loon partner"
+            "Loon partner",
+            "Overig (Alimentatie, DUO, winst)"
           ]}
           changed={inputChangeHandler}
         />
       );
     }
+  }
+
+  const check = [];
+
+  if (regeling != "") {
+    check.push(
+      <div>
+        <button className={classes.Button}>Check</button>
+      </div>
+    );
   }
 
   return (
@@ -92,9 +140,8 @@ const FrontPage = () => {
           <br />
           <input type="checkbox" onChange={partnerChangedHandler} />
           <label> Ik heb een partner</label>
-          <br />
-          <br />
           {inputs}
+          {check}
         </div>
       </div>
     </div>
