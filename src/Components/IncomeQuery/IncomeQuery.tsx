@@ -1,16 +1,22 @@
 import React from "react";
 
 type IncomeQueryProps = {
-  incomeArray: string[];
+  incomeArray: { label: string; name: string }[];
   changed: (event: any) => void;
 };
 
 const IncomeQuery = (props: IncomeQueryProps) => {
   const inputs = props.incomeArray.map(income => {
     return (
-      <div key={income}>
-        <input type="number" min="0" name={income} onChange={props.changed} />
-        <label> {income}</label>
+      <div key={income.label}>
+        <input
+          type="number"
+          min="0"
+          id={income.label}
+          name={income.name}
+          onChange={props.changed}
+        />
+        <label htmlFor={income.label}> {income.label}</label>
       </div>
     );
   });
